@@ -1,0 +1,174 @@
+/* Basic styling */
+.navbar {
+  width: 100%;
+  color: white;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.navbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.oss-heading {
+  margin-right: auto;
+}
+
+.menu-items {
+  list-style: none;
+  border-radius: 50px;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+}
+
+.menu-item {
+  padding: 0.5rem 1rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--color-primary);
+  transition: height var(--animation-smooth);
+  z-index: -1;
+}
+
+.menu-item a {
+  position: relative;
+  color: var(--color-white);
+  text-decoration: none;
+  z-index: 1;
+}
+
+.menu-item:hover::before {
+  height: 100%;
+}
+
+.menu-item a:hover {
+  color: var(--color-white);
+}
+
+.menu-item a {
+  color: white;
+  text-decoration: none;
+}
+
+.contact-button {
+  margin-left: auto;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  background-color: #555;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  /* Needed for the pseudo-element */
+  overflow: hidden;
+  /* Ensure overflow is hidden */
+}
+
+/* Pseudo-element for background animation */
+.contact-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  /* Center vertically */
+  left: 50%;
+  /* Center horizontally */
+  width: 300%;
+  /* Initial width for animation */
+  height: 300%;
+  /* Initial height for animation */
+  background-color: var(--color-primary);
+  /* Light background color */
+  border-radius: 50%;
+  /* Make it circular */
+  transform: translate(-50%, -50%) scale(0);
+  /* Center and scale down */
+  transition: transform 1s ease;
+  /* Duration and timing function for the animation */
+  z-index: 0;
+  /* Place behind the button text */
+}
+
+/* Button text styling */
+.contact-button a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  /* To position text above the pseudo-element */
+  z-index: 1;
+  /* Place in front of the pseudo-element */
+}
+
+/* Hover effect for the button */
+.contact-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  /* Scale to full size on hover */
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    display: none;
+    /* Keep this as default */
+  }
+
+  /* Add this class to make the menu display when it's open */
+  .menu.open {
+    display: flex;
+    /* Display flex when open */
+  }
+
+  .oss-heading,
+  .contact-button {
+    display: none;
+  }
+
+  .menu-item {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .menu-item a {
+    display: block;
+    width: 100%;
+  }
+}
